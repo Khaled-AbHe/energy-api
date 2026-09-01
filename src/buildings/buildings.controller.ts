@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { BuildingsService } from './buildings.service.ts';
-import { CreateBuidlingDto } from './dto/create-building.dto.ts';
+import { BuildingsService } from './buildings.service.js';
+import { CreateBuidlingDto } from './dto/create-building.dto.js';
 
 @Controller('buildings')
 export class BuildingsController {
