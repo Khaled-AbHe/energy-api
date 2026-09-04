@@ -1,0 +1,15 @@
+### GET
+GET http://localhost:3000/api/health
+
+### GET
+GET http://localhost:3000/api/buildings/1
+
+### Post
+POST http://localhost:3000/api/buildings
+Content-Type: application/json
+
+{
+    "name": "test",
+    "address": "test",
+    "yearBuilt": 123
+}
