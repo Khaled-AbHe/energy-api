@@ -5,6 +5,6 @@ import { RoomsModule } from './rooms/rooms.module';
 
 @Module({
   imports: [HealthModule, BuildingsModule, RoomsModule],
-  controllers: []
+  controllers: [],
 })
 export class AppModule {}

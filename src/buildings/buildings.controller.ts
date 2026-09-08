@@ -18,7 +18,8 @@ export class BuildingsController {
   @Get('/:id')
   @ApiOperation({
     summary: 'Chercher un bâtiment',
-    description: 'Chercher un bâtiment à partir de la collection courante par son ID.',
+    description:
+      'Chercher un bâtiment à partir de la collection courante par son ID.',
   })
   @ApiParam({
     name: 'id',

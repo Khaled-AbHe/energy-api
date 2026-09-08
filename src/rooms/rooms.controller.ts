@@ -1,15 +1,27 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  HttpCode,
+} from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
 import {
   ApiCreatedResponse,
+  ApiNoContentResponse,
   ApiOkResponse,
   ApiOperation,
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
+import { RoomsResponseDto } from './dto/room-response.dto';
 
+@ApiTags('Rooms')
 @Controller('rooms')
 export class RoomsController {
   constructor(private readonly roomsService: RoomsService) {}
@@ -22,6 +34,7 @@ export class RoomsController {
   })
   @ApiCreatedResponse({
     description: 'Chambre créé.',
+    type: RoomsResponseDto,
     headers: {
       Location: {
         description: 'URI de la nouvelle ressource',
@@ -50,7 +63,8 @@ export class RoomsController {
   @Get(':id')
   @ApiOperation({
     summary: 'Chercher une chambre',
-    description: 'Cherche une chambre à partir de la collection courante par son ID.',
+    description:
+      'Cherche une chambre à partir de la collection courante par son ID.',
   })
   @ApiParam({
     name: 'id',
@@ -59,6 +73,7 @@ export class RoomsController {
   })
   @ApiOkResponse({
     description: 'Chambre trouvé.',
+    type: RoomsResponseDto,
   })
   findOne(@Param('id') id: string) {
     return this.roomsService.findOne(id);
@@ -68,7 +83,8 @@ export class RoomsController {
   @Patch(':id')
   @ApiOperation({
     summary: 'Mettre une chambre à jour',
-    description: 'Cherche une chambre à partir de la collection courante par son ID.',
+    description:
+      'Cherche une chambre à partir de la collection courante par son ID.',
   })
   @ApiParam({
     name: 'id',
@@ -85,8 +101,20 @@ export class RoomsController {
   // Delete one room
   @Delete(':id')
   @HttpCode(204)
+  @ApiOperation({
+    summary: 'Supprimer une chambre',
+    description:
+      'Cherche une chambre à partir de la collection courante par son ID.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'Identifiant UUID de la chambre',
+    format: 'uuid',
+  })
+  @ApiNoContentResponse({
+    description: 'Chambre supprimé.',
+  })
   remove(@Param('id') id: string) {
-
     return this.roomsService.remove(id);
   }
 }

@@ -5,7 +5,7 @@ import { configureSwagger } from './configure-swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  configureSwagger(app)
+  configureSwagger(app);
 
   app.setGlobalPrefix('api');
 
